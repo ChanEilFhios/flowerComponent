@@ -2,7 +2,7 @@ window.customElements.define('flower-layout', class extends HTMLElement {
   _processChildren() {
     const center = this.centerSlot.assignedElements()[0]
 
-    const petals = this.petalSlot.assignedElements()
+    const petals = this.petalsSlot.assignedElements()
     petals.forEach((element, x) => {
       element.style.setProperty('--i', x + 1)
     })
@@ -16,7 +16,6 @@ window.customElements.define('flower-layout', class extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         #container {
-          --m: 8;
           --tan: 0.41;
           --d: 2em; /* element size */
           --rel: 0.5; /* how much extra space we want between images, 1 = one element size */
@@ -48,7 +47,7 @@ window.customElements.define('flower-layout', class extends HTMLElement {
     `
     const slots = this.shadowRoot.querySelectorAll('slot')
     this.centerSlot = slots[0]
-    this.petalSlot = slots[1]
+    this.petalsSlot = slots[1]
 
     this.shadowRoot.firstElementChild.addEventListener('slotChange', () => this._processChildren())
   }
