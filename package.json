@@ -2,8 +2,9 @@
   "name": "flowerComponent",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "flower.js",
   "scripts": {
+    "start": "snowpack dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
