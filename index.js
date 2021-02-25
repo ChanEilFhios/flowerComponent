@@ -1,7 +1,5 @@
 window.customElements.define('flower-layout', class extends HTMLElement {
   _processChildren() {
-    const center = this.centerSlot.assignedElements()[0]
-
     const petals = this.petalsSlot.assignedElements()
     petals.forEach((element, x) => {
       element.style.setProperty('--i', x + 1)
@@ -55,5 +53,4 @@ window.customElements.define('flower-layout', class extends HTMLElement {
   connectedCallback() {
     this._processChildren()
   }
-
 })
