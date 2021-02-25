@@ -5,7 +5,7 @@ window.customElements.define('flower-layout', class extends HTMLElement {
       element.style.setProperty('--i', x + 1)
     })
 
-    this.shadowRoot.querySelector("#container").style.setProperty("--m", petals.length)
+    this.container.style.setProperty("--m", petals.length)
   }
 
   constructor() {
@@ -47,10 +47,39 @@ window.customElements.define('flower-layout', class extends HTMLElement {
     this.centerSlot = slots[0]
     this.petalsSlot = slots[1]
 
-    this.shadowRoot.firstElementChild.addEventListener('slotChange', () => this._processChildren())
+    this.container = this.shadowRoot.querySelector('#container')
+    this.container.addEventListener('slotChange', () => this._processChildren())
   }
 
   connectedCallback() {
     this._processChildren()
   }
+
+  get elementSize() {
+    return getComputedStyle(this.container).getPropertyValue('--d')
+  }
+
+  set elementSize(size) {
+    this.container.style.setProperty('--d', size)
+  }
+
+  get elementSpacing() {
+    return getComputedStyle(this.container).getPropertyValue('--rel')
+  }
+
+  set elementSpacing(spacing) {
+    this.container.style.setProperty('--rel', spacing)
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch(name) {
+      case 'element-size':
+        this.elementSize = newValue
+        break
+      case 'element-spacing':
+        this.elementSpacing = newValue
+    }
+  }
+  
+  static get observedAttributes() { return ['element-size', 'element-spacing']; }
 })
