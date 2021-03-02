@@ -23,7 +23,6 @@ window.customElements.define('flower-layout', class extends HTMLElement {
           width: var(--s); height: var(--s);
           font-size: x-large;
           font-weight: bold;
-          margin-left: 1em;
         }
 
         ::slotted(*) {
